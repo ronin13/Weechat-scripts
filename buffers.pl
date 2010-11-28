@@ -302,11 +302,12 @@ sub build_buffers
         $str .= weechat::color($color);
         if ($options{"short_names"} eq "on")
         {
-            $str .= substr($buffer->{"short_name"},0,$options{"max_length"});
+            # @{[split /_/,$x]}[1]
+            $str .= substr(@{[split /_/,$buffer->{"short_name"}]}[0],0,$options{"max_length"});
         }
         else
         {
-            $str .= substr($buffer->{"name"},0,$options{"max_length"});
+            $str .= substr(@{[split /_/,$buffer->{"name"}]}[0],0,$options{"max_length"});
         }
         $str .= "\n";
         $old_number = $buffer->{"number"};
